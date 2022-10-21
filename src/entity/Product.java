@@ -1,17 +1,19 @@
 package entity;
 
-public class Goods {
+public class Product {
     private String title;
-    private int price;
+    private Double price;
+    private int quantity;
     
     
     
-    public Goods() {
+    public Product() {
     }
 
-    public Goods(String title, int price) {
+    public Product(String title, Double price, int quantity) {
         this.title = title;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getTitle() {
@@ -22,13 +24,22 @@ public class Goods {
         this.title = title;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
 
     @Override
     public String toString() {
@@ -39,6 +50,9 @@ public class Goods {
                 + price 
                 + '}';
     }
+
+    
+
     
     
     

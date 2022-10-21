@@ -1,6 +1,7 @@
 package entity;
 
 
+
 public class Customer {
     private String name;
     private String lastName;
@@ -8,6 +9,7 @@ public class Customer {
 //    ---------------------------------------------
 
     public Customer() {
+        
     }
 
     public Customer(String name, String lastName, String phone) {
