@@ -22,6 +22,7 @@ public class App {
         scanner = new Scanner(System.in);
         customerManager = new CustomerManager();
         customers = new Customer[0];
+        
         productsManager = new ProductsManager();
         products  = new Product[0];
         
@@ -56,7 +57,7 @@ public class App {
                    break;
                 case 2:
                     System.out.println("2 - Edit product");
-                    Customer buyer =  new Customer();
+                    products = productsManager.editProduct(products);
                     
                     System.out.println(splitter);
                     break;
@@ -74,6 +75,7 @@ public class App {
                     break;
                 case 5:
                     System.out.println("5 - Edit customer");
+                    customers = customerManager.editCustomer(customers);
                     
                     System.out.println(splitter);
                     break;
@@ -135,14 +137,13 @@ public class App {
     private void testAddProduct(){
         Product product = new Product("Bread", 5.0, 23);
         this.products = Arrays.copyOf(this.products, this.products.length+1);
-        this.products[this.customers.length-1] = product;
+        this.products[this.products.length-1] = product;
         
         Product product1 = new Product("Milk", 1.86, 36);
         this.products = Arrays.copyOf(this.products, this.products.length+1);
-        this.products[this.customers.length-1] = product1;
-        
+        this.products[this.products.length-1] = product1;
         
     }
     
     
-}   // App ends
+}   // public class App ENDS
