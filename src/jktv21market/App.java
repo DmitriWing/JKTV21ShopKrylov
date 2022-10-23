@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import managers.CustomerManager;
 import managers.ProductsManager;
+import managers.OrderManager;
 
 
 public class App {
@@ -17,6 +18,9 @@ public class App {
     
     private final ProductsManager productsManager;
     private Product[] products;
+    
+    private final OrderManager ordersManager;
+    private Order[] orders;
 
     public App() {
         scanner = new Scanner(System.in);
@@ -25,6 +29,9 @@ public class App {
         
         productsManager = new ProductsManager();
         products  = new Product[0];
+        
+        ordersManager = new OrderManager();
+        orders = new Order[0];
         
         testAddCustomer();
         testAddProduct();
@@ -87,11 +94,13 @@ public class App {
                     break;
                 case 7:
                     System.out.println("7 - Place order");
+                    addOrder(ordersManager.placeOrder(customers, products));
                     
                     System.out.println(splitter);
                     break;
                 case 8:
                     System.out.println("8 - Orders list");
+                    ordersManager.ordersList(orders);
                     
                     System.out.println(splitter);
                     break;
@@ -116,6 +125,11 @@ public class App {
     public void addProduct(Product product){
         products = Arrays.copyOf(products, products.length+1);
         products[products.length-1] = product;
+    }
+    
+    public void addOrder(Order order){
+        orders = Arrays.copyOf(orders, orders.length+1);
+        orders[orders.length-1] = order;
     }
     
     
