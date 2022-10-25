@@ -22,13 +22,15 @@ public class CustomerManager {
         customer.setLastName(scanner.nextLine());
         System.out.println("Input customer's phone");
         customer.setPhone(scanner.nextLine());
+        System.out.println("How much cash in vallet (!!must be Integer!!)");
+        customer.setCash(scanner.nextInt());
         return customer;
         
     }
     
     public void customersList(Customer customers[]){
         for (int i = 0; i < customers.length; i++) {
-            System.out.printf("%d. %s %s, phone: %s%n", i+1, customers[i].getName(), customers[i].getLastName(), customers[i].getPhone());
+            System.out.printf("%d. %s %s, phone: %s, cash in vallet %d%n", i+1, customers[i].getName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getCash());
         }
     }
     
@@ -36,39 +38,7 @@ public class CustomerManager {
         this.customersList(customers);
         System.out.print("Choose customer number to edit: ");
         int custNrToEdit = scanner.nextInt()-1; scanner.nextLine();
-        
-//        Customer editCustomer = customers[custNrToEdit];
-//        Customer changedCustomer = new Customer();
-//        Boolean finish = true;
-//        editLoop: do {
-//            System.out.println("What do you like to edit?\nN - edit name\t L - edit last name\tP - edit phone \tS - Save changes and quit");
-//            String whatToEdit = scanner.nextLine();
-//            switch(whatToEdit.toUpperCase()){
-//                case "N":
-//                    System.out.print("Old name: " + editCustomer.getName() + "\tNew name: ");
-//                    changedCustomer.setName(scanner.nextLine());
-//                    changedCustomer.setLastName(editCustomer.getLastName());
-//                    changedCustomer.setPhone(editCustomer.getPhone());
-//                break;
-//                case "L":
-//                    System.out.print("Old lastname: " + editCustomer.getLastName() + "\tNew lastname: ");
-//                    changedCustomer.setLastName(scanner.nextLine());
-//                    changedCustomer.setName(editCustomer.getName());
-//                    changedCustomer.setPhone(editCustomer.getPhone());
-//                break;
-//                case "P":
-//                    System.out.print("Old phone: " + editCustomer.getPhone() + "\tNew phone: ");
-//                    changedCustomer.setPhone(scanner.nextLine());
-//                    changedCustomer.setName(editCustomer.getName());
-//                    changedCustomer.setLastName(editCustomer.getLastName());
-//                break;
-//                case "S":
-//                    break editLoop;
-//            }
-//            Arrays.asList(customers).replaceAll(n->n.equals(editCustomer) ? changedCustomer : n);
-//        } while (finish);
-        
-//            teacher's method
+
         System.out.printf("Edit name '%s'? Choose option: (y / n) ", customers[custNrToEdit].getName());
         String task = scanner.nextLine();
         switch (task.toLowerCase()){
@@ -93,10 +63,18 @@ public class CustomerManager {
                 customers[custNrToEdit].setPhone(scanner.nextLine());
             break;
         }
-        
+        System.out.printf("Edit cash '%d'? Choose option: (y / n) ", customers[custNrToEdit].getCash());
+        task = scanner.nextLine();
+        switch (task.toLowerCase()){
+            case "y":
+                System.out.print("Input how much cash: ");
+                customers[custNrToEdit].setCash(scanner.nextInt());
+            break;
+        }
         return customers;
         
     }
+    
     
     
     

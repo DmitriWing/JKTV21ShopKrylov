@@ -6,16 +6,18 @@ public class Customer {
     private String name;
     private String lastName;
     private String phone;
+    private int cash;
 //    ---------------------------------------------
 
     public Customer() {
         
     }
 
-    public Customer(String name, String lastName, String phone) {
+    public Customer(String name, String lastName, String phone, int cash) {
         this.name = name;
         this.lastName = lastName;
         this.phone = phone;
+        this.cash = cash;
     }
 
     public String getName() {
@@ -41,7 +43,17 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    
+    public int getCash() {
+        return cash;
+    }
 
+    public void setCash(int cash) {
+        this.cash = cash;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Customer{" 
@@ -50,6 +62,7 @@ public class Customer {
                 + ", phone=" + phone 
                 + '}';
     }
-    
+
+
     
 }

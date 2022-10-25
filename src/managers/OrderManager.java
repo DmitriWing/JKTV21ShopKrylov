@@ -8,16 +8,19 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 
+
 public class OrderManager {
     private final Scanner scanner;
     private final CustomerManager customerManager;
     private final ProductsManager productsManager;
+    private final Product products;
     
 
     public OrderManager() {
         scanner = new Scanner(System.in);
         customerManager = new CustomerManager();
         productsManager = new ProductsManager();
+        products = new Product();
     }
     
     public Order placeOrder(Customer[] customers, Product[] products){
@@ -39,10 +42,19 @@ public class OrderManager {
             }else{
                 order.setCustomer(customers[customerNr-1]);
                 order.setProduct(products[productNr-1]);
-                order.getProduct().setQuantity(productQty);
+                order.setQuantity(productQty);
                 order.setOrderDate(new GregorianCalendar().getTime());
-                int remainQty = order.getProduct().getQuantity()- productQty;
+                int remainQty = products[productNr-1].getQuantity() - productQty;
                 // change products quantity in store;
+                int spentCash = productQty * products[productNr-1].getPrice();
+                if (spentCash > customers[customerNr-1].getCash() ) {
+                    System.out.println("Not enough cash in vallet. Choose less quantity");
+                    continue;
+                }else{
+                    int remainCash = customers[customerNr-1].getCash() - spentCash;
+                    customers[customerNr-1].setCash(remainCash);
+                    products[productNr-1].setQuantity(remainQty);
+                }
                 itemQty = false;
             }
         } while (itemQty);
@@ -53,15 +65,15 @@ public class OrderManager {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, hh:mm");
         for (int i = 0; i < orders.length; i++) {
             Order order = orders[i];
-            System.out.printf("%d. %s - %d; Price per item: %.2f; Customer: %s %s; Order date: %s", i+1,
+            System.out.printf("%d. %s - %d; Price per item: %d; Customer: %s %s; Order date: %s%n", 
+                    i+1,
                     order.getProduct().getTitle(),
-                    order.getProduct().getQuantity(),
+                    order.getQuantity(),
                     order.getProduct().getPrice(),
                     order.getCustomer().getName(),
                     order.getCustomer().getLastName(),
                     sdf.format(order.getOrderDate())
                     );
-//            System.out.println((i+1) + ". Product: " + order.getProduct() + "; Customer: " + order.getCustomer() + "; Order date: " + sdf.format(order.getOrderDate()));
         }
     }
     
