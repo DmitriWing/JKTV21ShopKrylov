@@ -8,6 +8,7 @@ import java.util.Arrays;
 import managers.CustomerManager;
 import managers.ProductsManager;
 import managers.OrderManager;
+import managers.DataManager;
 
 
 public class App {
@@ -21,22 +22,26 @@ public class App {
     private final OrderManager ordersManager;
     private Order[] orders;
     
+    private DataManager dataManager;
 
     public App() {
         scanner = new Scanner(System.in);
         customerManager = new CustomerManager();
         customers = new Customer[0];
         
+        dataManager = new DataManager();
         productsManager = new ProductsManager();
-        products  = new Product[0];
+        products  = dataManager.loadProductsFromFile();
         
         ordersManager = new OrderManager();
         orders = new Order[0];
         
         
         
-        testAddCustomer();
-        testAddProduct();
+        
+        
+//        testAddCustomer();
+//        testAddProduct();
         
     }
     
@@ -61,7 +66,7 @@ public class App {
                 case 1:
                     System.out.println("1 - Add product");
                     addProduct(productsManager.createProduct());
-                    
+                    dataManager.saveProductsToFile(products);
                     System.out.println(splitter);
                    break;
                 case 2:
@@ -120,7 +125,7 @@ public class App {
                     break;
                     
                 default:
-                    System.out.println("There is no function with such number\nChoose function number from the list!\n---------------------------------------------------------------------------");
+                    System.out.println("There is no function with such number\nChoose function number from the list!\n" + splitter);
             }
             
             
