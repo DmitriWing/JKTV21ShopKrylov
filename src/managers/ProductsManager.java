@@ -25,14 +25,14 @@ public class ProductsManager {
         return product;
     }
     
-    public void productsLis(Product[] products){
+    public void productsList(Product[] products){
         for (int i = 0; i < products.length; i++) {
             System.out.printf("%d. Title: %s; Price: %d; Quantity: %d%n", i+1, products[i].getTitle(), products[i].getPrice(), products[i].getQuantity());
         }
     }
     
     public Product[] editProduct(Product[] products){
-        this.productsLis(products);
+        this.productsList(products);
         System.out.print("Choose product number to edit: ");
         int prodNrToEdit = scanner.nextInt()-1; scanner.nextLine();
         System.out.printf("Edit title '%s'? Choose option: (y / n) ", products[prodNrToEdit].getTitle());

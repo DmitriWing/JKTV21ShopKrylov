@@ -29,7 +29,7 @@ public class OrderManager {
         System.out.print("Choose customer number: ");
         int customerNr = scanner.nextInt(); scanner.nextLine();
         
-        productsManager.productsLis(products);
+        productsManager.productsList(products);
         System.out.print("Choose product number: ");
         int productNr = scanner.nextInt(); scanner.nextLine();
         

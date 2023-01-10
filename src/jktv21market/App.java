@@ -36,10 +36,6 @@ public class App {
         ordersManager = new OrderManager();
         orders = new Order[0];
         
-        
-        
-        
-        
 //        testAddCustomer();
 //        testAddProduct();
         
@@ -77,7 +73,7 @@ public class App {
                     break;
                 case 3:
                     System.out.println("3 - Products list");
-                    productsManager.productsLis(products);
+                    productsManager.productsList(products);
                     
                     System.out.println(splitter);
                     break;
